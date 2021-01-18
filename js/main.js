@@ -1,5 +1,5 @@
-const button = document.getElementById("generate-button")
 const number = document.getElementById("number")
+const button = document.getElementById("generate-button")
 
 const randomChar = () => {
     const charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
@@ -15,6 +15,7 @@ const corrupt = (s) => {
 const generateNumber = () => {
     button.disabled = true
     number.innerText = "<<generating>>"
+
     while (true) {
         var n = ((10 * Math.random()) ** (20 * Math.random()) * (-0.5 + Math.random())).toString()
 
@@ -23,11 +24,15 @@ const generateNumber = () => {
                 n = corrupt(n)
             }
 
-            const wait = 500 + Math.random() * 500
-            setTimeout(() => {
-                number.innerText = n
+            const setNumber = () => {
                 button.disabled = false
-            }, wait)
+                number.innerHTML = `${n} (<a download="this-number-does-not-exist.txt" href="data:application/octet-stream,${n}">download</a>)`
+            }
+
+            const wait = 500 + Math.random() * 500
+
+            setTimeout(setNumber, wait)
+
             return
         }
     }
