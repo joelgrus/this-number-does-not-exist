@@ -1,7 +1,12 @@
 const generateNumber = () => {
-    const number = (10 * Math.random()) ** (100 * Math.random()) * (-0.5 + Math.random())
+    while (true) {
+        const number = (10 * Math.random()) ** (20 * Math.random()) * (-0.5 + Math.random())
 
-    document.getElementById("number").innerText = number    
+        if (number.toString().indexOf('e') == -1) {
+            document.getElementById("number").innerText = number    
+            return
+        }
+    }
 }
 
 generateNumber()
