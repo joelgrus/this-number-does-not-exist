@@ -1,7 +1,7 @@
-const setNumber = () => {
-    const number = (10 * Math.random()) ** (100 * Math.random()) * (1 + Math.random())
+const generateNumber = () => {
+    const number = (10 * Math.random()) ** (100 * Math.random()) * (-0.5 + Math.random())
 
     document.getElementById("number").innerText = number    
 }
 
-setNumber()
+generateNumber()
