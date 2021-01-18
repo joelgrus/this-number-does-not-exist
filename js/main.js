@@ -1,3 +1,6 @@
+const button = document.getElementById("generate-button")
+const number = document.getElementById("number")
+
 const randomChar = () => {
     const charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     const pos = Math.floor(Math.random() * charSet.length)
@@ -10,15 +13,21 @@ const corrupt = (s) => {
 }
 
 const generateNumber = () => {
+    button.disabled = true
+    number.innerText = "<<generating>>"
     while (true) {
-        var number = ((10 * Math.random()) ** (20 * Math.random()) * (-0.5 + Math.random())).toString()
+        var n = ((10 * Math.random()) ** (20 * Math.random()) * (-0.5 + Math.random())).toString()
 
-        if (number.indexOf('e') == -1) {
+        if (n.indexOf('e') == -1) {
             if (Math.random() < 0.1) {
-                number = corrupt(number)
+                n = corrupt(n)
             }
 
-            document.getElementById("number").innerText = number    
+            const wait = 500 + Math.random() * 500
+            setTimeout(() => {
+                number.innerText = n
+                button.disabled = false
+            }, wait)
             return
         }
     }
